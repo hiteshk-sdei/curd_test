@@ -1,0 +1,61 @@
+<section>
+  <div class="container mt-5">
+    <% flash.each do |type, msg| %>
+      <div class="alert alert-danger">
+        <%= msg.kind_of?(Array) ? msg.join(", ") : msg %>
+      </div>
+    <% end %>
+    <div class="card">
+      <div class="card-header"><h1>Projects</h1></div>
+      <div class="card-body">
+        <div class="text-right mb-3">
+          <%= link_to new_project_path, class: "btn btn-primary" do %>
+            <i class="fa fa-plus pr-2"></i> Create new project
+          <% end %>
+        </div>
+        <table class="table projet-table" id="table1">
+          <thead class="thead-dark">
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col" align="right" class="text-right">Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @projects.each do |project| %>
+              <tr>
+                <td><%= project.name %></td>
+                <td align="right">
+                  <div class="btn-group action-box">
+                      <i class="fa fa-ellipsis-h fa-2x dropdown-toggle" type="button" id="dropdownMenuClickable" data-bs-toggle="dropdown" data-bs-auto-close="false" aria-expanded="false"></i>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuClickable">
+                      <li><%= link_to "Delete", project_path(project.id), method: :delete, class: "dropdown-item", data: {confirm: 'Are you sure?'} %></li>
+                      <li><%= link_to "Issues", project_issues_path(project.id), class: "dropdown-item" %></li>
+                      <li><%= link_to "Edit", edit_project_path(project.id), class: "dropdown-item" %></li>
+                    </ul>
+                  </div>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<style type="text/css">
+  .text-right{
+    text-align: right;
+  }
+  .projet-table tr td{
+    padding: 15px;
+  }
+  .action-box .dropdown-toggle::after{
+    display: none;
+  }
+  .action-box .dropdown-menu.show {
+    transform: inherit !important;
+    margin-top: 25px !important;
+  }
+</style>

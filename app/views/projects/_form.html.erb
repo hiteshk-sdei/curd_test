@@ -1,0 +1,17 @@
+<section class="add-location">
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-danger">
+      <%= msg.kind_of?(Array) ? msg.join(", ") : msg %>
+    </div>
+  <% end %>
+  <%= form_for(@project) do |f| %>
+    <p>
+      <%= f.label :name, class: "form-label" %><br>
+      <%= f.text_field :name, placeholder: "Project name", class: "form-control" %>
+    </p>
+    <p>
+      <%= link_to 'Cancel', dashboard_path, class: "btn btn-secondary" %>
+      <%= f.submit class: "btn btn-primary"  %>
+    </p>
+  <% end %>
+</section>

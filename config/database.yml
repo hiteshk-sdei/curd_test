@@ -1,0 +1,9 @@
+defaults: &defaults
+ adapter: postgresql
+ username: postgres
+ password: 12345678
+ host: localhost
+
+development:
+ database: curd_test_development
+ <<: *defaults
