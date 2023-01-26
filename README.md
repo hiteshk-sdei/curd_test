@@ -14,4 +14,7 @@ Go to your project directory and follow below steps to setup the project on your
 
 6. rails db:seed
 
-6. Now run rails server:- rails s
+7. Now run rails server:- rails s
+
+8. node version above 14+
+
